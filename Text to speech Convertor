@@ -1,0 +1,11 @@
+from gtts import gTTS
+import IPython.display as ipd
+
+text = input("Enter text to convert to speech: ")
+lang = input("Enter language code (e.g., 'en' for English): ")
+
+tts = gTTS(text=text, lang=lang)
+tts.save("tts_output.mp3")
+
+print("Playing audio...")
+ipd.display(ipd.Audio("tts_output.mp3"))
