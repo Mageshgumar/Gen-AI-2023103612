@@ -1,0 +1,33 @@
+House Price Prediction:
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset
+data = {
+    'Size (sqft)': [1500, 1800, 2400, 3000, 3500],
+    'Bedrooms': [3, 4, 3, 5, 4],
+    'Age': [10, 15, 20, 8, 5],
+    'Price (k$)': [300, 400, 500, 600, 650]
+}
+
+df = pd.DataFrame(data)
+
+# Features and target
+X = df[['Size (sqft)', 'Bedrooms', 'Age']]
+y = df['Price (k$)']
+
+# Train the model
+model = LinearRegression()
+model.fit(X, y)
+
+# Get input from user
+print("Enter the details of the house to predict price:")
+size = float(input("Size (in sqft): "))
+bedrooms = int(input("Number of Bedrooms: "))
+age = int(input("Age of the house (in years): "))
+
+# Make prediction
+input_data = [[size, bedrooms, age]]
+predicted_price = model.predict(input_data)
+
+print(f"\nEstimated House Price: ${predicted_price[0]*1000:,.2f}")
